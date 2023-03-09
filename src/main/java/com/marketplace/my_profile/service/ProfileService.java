@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProfileService {
@@ -36,12 +35,8 @@ public class ProfileService {
     }
 
     //sección del User en su profile
-    public List<Card> getCardsByProfile(Long idProfile){
+    public Iterable<Card> getCardsByProfile(Long idProfile){
         return cardRepository.findCardsByProfile(idProfile);
-    }
-
-    public void createCardByProfile(long idProfile){
-
     }
 
 }
