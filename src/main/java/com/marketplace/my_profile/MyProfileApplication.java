@@ -1,18 +1,7 @@
 package com.marketplace.my_profile;
 
-import com.marketplace.my_profile.domain.Card;
-import com.marketplace.my_profile.domain.PersonalData;
-import com.marketplace.my_profile.domain.Profile;
-import com.marketplace.my_profile.repository.CardRepository;
-import com.marketplace.my_profile.repository.PersonalDataRepository;
-import com.marketplace.my_profile.repository.ProfileRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import java.sql.Date;
-import java.util.Set;
 
 @SpringBootApplication
 public class MyProfileApplication {

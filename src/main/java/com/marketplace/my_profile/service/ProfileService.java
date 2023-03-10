@@ -1,8 +1,9 @@
 package com.marketplace.my_profile.service;
 
+import com.marketplace.my_profile.domain.Address;
 import com.marketplace.my_profile.domain.Card;
-import com.marketplace.my_profile.domain.PersonalData;
 import com.marketplace.my_profile.domain.Profile;
+import com.marketplace.my_profile.repository.AddressRepository;
 import com.marketplace.my_profile.repository.CardRepository;
 import com.marketplace.my_profile.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,10 @@ public class ProfileService {
     ProfileRepository profileRepository;
     @Autowired
     CardRepository cardRepository;
-
+    @Autowired
+    AddressRepository addressRepository;
     //sección del admin
-    public List<Profile> getProfiles(){
+    public Iterable<Profile> getProfiles(){
         return profileRepository.findAll();
     }
 
@@ -36,7 +38,11 @@ public class ProfileService {
 
     //sección del User en su profile
     public Iterable<Card> getCardsByProfile(Long idProfile){
-        return cardRepository.findCardsByProfile(idProfile);
+        return profileRepository.findCardsByProfile(idProfile);
     }
+    public Iterable<Address> getAddressesByProfile(Long idProfile){
+        return profileRepository.findAddressByProfile(idProfile);
+    }
+
 
 }

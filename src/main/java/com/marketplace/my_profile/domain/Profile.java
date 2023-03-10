@@ -3,7 +3,9 @@ package com.marketplace.my_profile.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -14,17 +16,29 @@ import java.util.Set;
 @Table(name = "Profile")
 public class Profile {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_profile")
     private Long idProfile;
-    private String username;
-    private String password;
-
-    @OneToOne
-    private PersonalData personalData;
+    private String firstname;
+    private String lastname;
+    private Integer telNumber;
+    private String email;
+    private Date birthday;
+    @Column(name = "alternative_number", nullable = true)
+    private Integer alternativeNumber;
 
     @OneToMany(
+            targetEntity = Card.class,
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+            cascade = CascadeType.ALL,
+            mappedBy = "profile"
     )
-    private Set<Card> cardSet = new HashSet<Card>();
+    private List<Card> cards;
+
+    @OneToMany(
+            targetEntity = Address.class,
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "profile"
+    )
+    private List<Address> addresses;
 }

@@ -4,18 +4,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Date;
-
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Card")
-public class Card {
+@Table(name="Address")
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCard;
+    @Column(name = "id_address")
+    private Long idAddress;
+
+    private String address;
+    /*detailAddress es para detallar casa, apto, torre*/
+    private String detailAddress;
     @JsonIgnore
     @ManyToOne(
             fetch = FetchType.EAGER,
@@ -24,16 +27,6 @@ public class Card {
     @JoinColumn(name = "id_profile")
     private Profile profile;
 
-    @Column(name = "card_number")
-    private Integer cardNumber;
-    @Column(name = "expiration_date")
-    private Date expirationDate;
-    @Column(name = "CVV")
-    private Integer cvv;
-    @Column(name = "card_person_name")
-    private String cardName;
-    @Column(name = "card_nickname")
-    private String cardNickname;
 
 
 }

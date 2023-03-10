@@ -12,7 +12,7 @@ public class CardService {
     @Autowired
     CardRepository cardRepository;
 
-    public List<Card> getCards(){
+    public Iterable<Card> getCards(){
         return cardRepository.findAll();
     }
     public Card getCardById(Long id){
