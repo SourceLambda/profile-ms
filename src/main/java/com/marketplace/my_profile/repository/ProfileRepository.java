@@ -8,11 +8,13 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ProfileRepository extends CrudRepository<Profile, Long> {
-    @Query(value = "(SELECT * FROM address WHERE id_profile = :idProfile)", nativeQuery = true)
-    Iterable<Address> findAddressByProfile(@Param("idProfile") Long idProfile);
+    @Query(value = "SELECT a FROM Address a WHERE a.profile = ?1")
+    Iterable<Address> findAddressByProfile(Optional<Profile> Profile);
 
-    @Query(value = "(select * from Card where id_profile = :profileId)", nativeQuery = true)
-    Iterable<Card> findCardsByProfile(@Param("profileId") Long profileId);
+    @Query(value = "SELECT c FROM Card c WHERE c.profile = ?1")
+    Iterable<Card> findCardsByProfile(Optional<Profile> Profile);
 }

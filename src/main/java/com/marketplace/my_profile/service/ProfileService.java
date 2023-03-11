@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProfileService {
@@ -38,10 +39,12 @@ public class ProfileService {
 
     //sección del User en su profile
     public Iterable<Card> getCardsByProfile(Long idProfile){
-        return profileRepository.findCardsByProfile(idProfile);
+        Optional<Profile> profile = profileRepository.findById(idProfile);
+        return profileRepository.findCardsByProfile(profile);
     }
     public Iterable<Address> getAddressesByProfile(Long idProfile){
-        return profileRepository.findAddressByProfile(idProfile);
+        Optional<Profile> profile = profileRepository.findById(idProfile);
+        return profileRepository.findAddressByProfile(profile);
     }
 
 
