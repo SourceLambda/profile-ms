@@ -25,7 +25,7 @@ public class Card {
     private Profile profile;
 
     @Column(name = "card_number")
-    private Integer cardNumber;
+    private Long cardNumber;
     @Column(name = "expiration_date")
     private Date expirationDate;
     @Column(name = "CVV")

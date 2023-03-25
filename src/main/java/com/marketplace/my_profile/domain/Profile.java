@@ -22,6 +22,7 @@ public class Profile {
     private String lastname;
     private Integer telNumber;
     private String email;
+    private String password;
     private Date birthday;
     @Column(name = "alternative_number", nullable = true)
     private Integer alternativeNumber;
