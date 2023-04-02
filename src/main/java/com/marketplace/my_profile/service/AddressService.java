@@ -20,8 +20,9 @@ public class AddressService {
         return addressRepository.findById(id).get();
     }
 
-    public void saveOrUpdateAddress(Address address){
+    public Address saveAddress(Address address){
         addressRepository.save(address);
+        return address;
     }
 
     public void deleteAddressById(Long id){

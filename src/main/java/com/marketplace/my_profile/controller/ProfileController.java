@@ -31,14 +31,22 @@ public class ProfileController {
         return profileService.getProfileById(idProfile);
     }
 
+    @PutMapping("/{idProfile}")
+    public Profile updateProfile(@RequestBody Profile profile){
+        profileService.saveProfile(profile);
+        return profile;
+    }
+
     @PostMapping()
-    public void saveProfile(@RequestBody Profile profile){
-        profileService.saveOrUpdateProfile(profile);
+    public Profile saveProfile(@RequestBody Profile profile){
+        profileService.saveProfile(profile);
+        return profile;
     }
 
     @DeleteMapping("/{idProfile}")
-    public void deleteProfile(@PathVariable("idProfile") Long idProfile){
+    public Long deleteProfile(@PathVariable("idProfile") Long idProfile){
         profileService.deleteProfileById(idProfile);
+        return idProfile;
     }
 
     @GetMapping("/{idProfile}/cards")

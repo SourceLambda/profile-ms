@@ -28,15 +28,23 @@ public class AddressController {
         return addressService.getAddressById(idAddress);
     }
 
+    @PutMapping("/address/{idAddress}")
+    public Address updateAddress(@RequestBody Address address){
+        addressService.saveAddress(address);
+        return address;
+    }
+
     @PostMapping("/profile/{idProfile}/address")
-    public void saveUpdateAddress(@RequestBody Address address, @PathVariable Long idProfile){
+    public Address saveAddress(@RequestBody Address address, @PathVariable Long idProfile){
         Profile profile = profileService.getProfileById(idProfile);
         address.setProfile(profile);
-        addressService.saveOrUpdateAddress(address);
+        addressService.saveAddress(address);
+        return address;
     }
 
     @DeleteMapping("/address/{idAddress}")
-    public void deleteAddress(@PathVariable("idAddress") Long idAddress){
+    public Long deleteAddress(@PathVariable("idAddress") Long idAddress){
         addressService.deleteAddressById(idAddress);
+        return idAddress;
     }
 }

@@ -18,8 +18,9 @@ public class CardService {
     public Card getCardById(Long id){
         return cardRepository.findById(id).get();
     }
-    public void saveOrUpdateCard(Card card){
+    public Card saveCard(Card card){
         cardRepository.save(card);
+        return card;
     }
     public void deleteCardById(Long id){
         cardRepository.deleteById(id);

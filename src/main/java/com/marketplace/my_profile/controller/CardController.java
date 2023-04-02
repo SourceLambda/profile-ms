@@ -21,20 +21,28 @@ public class CardController {
         return cardService.getCards();
     }
 
+    @PutMapping("/card/{idCard}")
+    public Card updateCard(@RequestBody Card card){
+        cardService.saveCard(card);
+        return card;
+    }
+
     @GetMapping("/card/{idCard}")
     public Card getCardById(@PathVariable("idCard")Long idCard){
         return cardService.getCardById(idCard);
     }
 
     @PostMapping("/profile/{idProfile}/card")
-    public void saveProfile(@RequestBody Card card, @PathVariable Long idProfile){
+    public Card saveCard(@RequestBody Card card, @PathVariable Long idProfile){
         Profile profile = profileService.getProfileById(idProfile);
         card.setProfile(profile);
-        cardService.saveOrUpdateCard(card);
+        cardService.saveCard(card);
+        return card;
     }
 
     @DeleteMapping("/card/{idCard}")
-    public void deleteCard(@PathVariable("idCard") Long idCard){
+    public Long deleteCard(@PathVariable("idCard") Long idCard){
         cardService.deleteCardById(idCard);
+        return idCard;
     }
 }

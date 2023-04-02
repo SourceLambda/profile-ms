@@ -29,8 +29,9 @@ public class ProfileService {
         return profileRepository.findById(id).get();
     }
 
-    public void saveOrUpdateProfile(Profile profile){
+    public Profile saveProfile(Profile profile){
         profileRepository.save(profile);
+        return profile;
     }
 
     public void deleteProfileById(Long id){
