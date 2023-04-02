@@ -53,9 +53,41 @@ public class ProfileController {
     public Iterable<Card> getCardsByProfileId(@PathVariable("idProfile")Long idProfile){
         return profileService.getCardsByProfile(idProfile);
     }
+    @GetMapping("/{idProfile}/cards/{idCard}")
+    public Card getCardFromProfileCards(@PathVariable("idProfile")Long idProfile, @PathVariable("idCard")Long idCard){
+        Iterable<Card> cards = profileService.getCardsByProfile(idProfile);
+        Card addressToReturn = new Card();
+        for(Card card: cards){
+            if(card.getIdCard().equals(idCard)){
+                addressToReturn.setIdCard(card.getIdCard());
+                addressToReturn.setProfile(card.getProfile());
+                addressToReturn.setCardName(card.getCardName());
+                addressToReturn.setCardNickname(card.getCardNickname());
+                addressToReturn.setCvv(card.getCvv());
+                addressToReturn.setExpirationDate(card.getExpirationDate());
+                addressToReturn.setCardNumber(card.getCardNumber());
+            }
+        }
+        return addressToReturn;
+    }
     @GetMapping("/{idProfile}/addresses")
     public Iterable<Address> getAddressesByProfileId(@PathVariable("idProfile") Long idProfile){
         return profileService.getAddressesByProfile(idProfile);
+    }
+
+    @GetMapping("/{idProfile}/addresses/{idAddress}")
+    public Address getAddressFromProfileAddresses(@PathVariable("idProfile")Long idProfile, @PathVariable("idAddress")Long idAddress){
+        Iterable<Address> addresses = profileService.getAddressesByProfile(idProfile);
+        Address addressToReturn = new Address();
+        for(Address address: addresses){
+            if(address.getIdAddress().equals(idAddress)){
+                addressToReturn.setIdAddress(address.getIdAddress());
+                addressToReturn.setProfile(address.getProfile());
+                addressToReturn.setAddress(address.getAddress());
+                addressToReturn.setDetailAddress(address.getDetailAddress());
+            }
+        }
+        return addressToReturn;
     }
 
 

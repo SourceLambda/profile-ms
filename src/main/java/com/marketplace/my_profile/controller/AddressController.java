@@ -29,8 +29,11 @@ public class AddressController {
     }
 
     @PutMapping("/address/{idAddress}")
-    public Address updateAddress(@RequestBody Address address){
-        addressService.saveAddress(address);
+    public Address updateAddress(@RequestBody Address address, @PathVariable("idAddress")Long idAddress){
+        Address originalAddress = addressService.getAddressById(idAddress);
+        originalAddress.setDetailAddress(address.getDetailAddress());
+        originalAddress.setAddress(address.getAddress());
+        addressService.saveAddress(originalAddress);
         return address;
     }
 

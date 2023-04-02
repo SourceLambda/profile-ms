@@ -21,12 +21,6 @@ public class CardController {
         return cardService.getCards();
     }
 
-    @PutMapping("/card/{idCard}")
-    public Card updateCard(@RequestBody Card card){
-        cardService.saveCard(card);
-        return card;
-    }
-
     @GetMapping("/card/{idCard}")
     public Card getCardById(@PathVariable("idCard")Long idCard){
         return cardService.getCardById(idCard);
