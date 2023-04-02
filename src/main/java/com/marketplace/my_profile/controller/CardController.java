@@ -34,8 +34,11 @@ public class CardController {
         return card;
     }
 
-    @DeleteMapping("/card/{idCard}")
-    public Long deleteCard(@PathVariable("idCard") Long idCard){
+    @DeleteMapping("/profile/{idProfile}/cards/{idCard}")
+    public Long deleteCard(@PathVariable("idCard")Long idCard, @PathVariable("idProfile")Long idProfile){
+        Profile profile = profileService.getProfileById(idProfile);
+        Card cardToDelete = cardService.getCardById(idCard);
+        profile.getCards().remove(cardToDelete);
         cardService.deleteCardById(idCard);
         return idCard;
     }

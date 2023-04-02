@@ -45,8 +45,11 @@ public class AddressController {
         return address;
     }
 
-    @DeleteMapping("/address/{idAddress}")
-    public Long deleteAddress(@PathVariable("idAddress") Long idAddress){
+    @DeleteMapping("/profile/{idProfile}/addresses/{idAddress}")
+    public Long deleteAddress(@PathVariable("idAddress")Long idAddress, @PathVariable("idProfile")Long idProfile){
+        Profile profile = profileService.getProfileById(idProfile);
+        Address addressToDelete = addressService.getAddressById(idAddress);
+        profile.getAddresses().remove(addressToDelete);
         addressService.deleteAddressById(idAddress);
         return idAddress;
     }

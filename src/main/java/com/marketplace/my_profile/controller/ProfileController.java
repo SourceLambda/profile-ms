@@ -44,7 +44,7 @@ public class ProfileController {
     }
 
     @DeleteMapping("/{idProfile}")
-    public Long deleteProfile(@PathVariable("idProfile") Long idProfile){
+    public Long deleteProfile(@PathVariable("idProfile")Long idProfile){
         profileService.deleteProfileById(idProfile);
         return idProfile;
     }
